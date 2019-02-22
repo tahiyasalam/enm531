@@ -142,6 +142,7 @@ def problem_1():
     plt.title('Performance of neural net with 2 hidden layers and 50 neurons per layer')
     plt.show()
 
+
 def problem_2():
     N_f = 10
     batch_size = N_f
@@ -178,13 +179,15 @@ def problem_2():
             W_i = np.zeros((D, neurons))
         else:
             W_i = np.zeros((np.shape(params[-1][0])[1], neurons))
-        b_i = np.zeros((neurons, 1))
-        params.append([W_i, b_i.T])
+        b_i = np.zeros((neurons, 1)).T
+        # b_i = np.zeros_like(x_f).T
+        params.append([W_i, b_i])
 
     W_o = np.zeros((np.shape(params[-1][0])[1], 1))
-    b_o = np.zeros(np.shape(z_f))
+    b_o = np.zeros((neurons, 1)).T
+    # b_o = np.zeros_like(x_f)
 
-    params.append([W_o, b_o.T])
+    params.append([W_o, b_o])
     init_params(params)
 
     iter_num = 1000
@@ -204,6 +207,7 @@ def problem_2():
         params = new_params
 
     z_pred = feed_forward(params, z_f)
+
 
 if __name__ == "__main__":
     # problem_1()
